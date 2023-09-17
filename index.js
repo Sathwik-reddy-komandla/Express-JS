@@ -1,16 +1,14 @@
 import express from 'express';
-import path from 'path';
-import userCredentials from './middlewares/logs.js';
-
+import { join } from 'path';
+import route from './routes/route.js'
 
 
 const app=express()
-app.use(express.static('./public'))
+app.set("view engine","ejs")
+app.use(express.static(join(process.cwd(),'./public')))
+app.use("/",route)
 
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.join(process.cwd(),"./public/index.html"))
-})
 
 
 app.listen(3000,()=>{
