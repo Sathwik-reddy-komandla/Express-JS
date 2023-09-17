@@ -1,26 +1,17 @@
 import express from 'express';
-// import products from './products.js'
+import path from 'path';
 import userCredentials from './middlewares/logs.js';
 
 
 
 const app=express()
-app.use(userCredentials)
+app.use(express.static('./public'))
 
-//Query String
-// app.get('/product',(req,res)=>{
-//     const {category,id}=req.query
-//     res.send(`Response ok ${category} and ${id}`)
-// })
 
 app.get('/',(req,res)=>{
-    res.send("you are auhthenticated")
+    res.sendFile(path.join(process.cwd(),"./public/index.html"))
 })
 
-//sending Json
-// app.get('/products',(req,res)=>{
-//     res.json(products)
-// })
 
 app.listen(3000,()=>{
     console.log("Server Up ")
